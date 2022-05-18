@@ -1,7 +1,6 @@
 import { Buffer } from "buffer";
 
 import React from "react";
-import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,6 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Configurator from "./screens/Configurator.jsx";
+import LandingPage from "./screens/LandingPage.jsx";
 import Login from "./screens/Login.jsx";
 import Register from "./screens/Register.jsx";
 import Activate from "./screens/Activate.jsx";
@@ -16,18 +16,16 @@ import Private from "./screens/Private.jsx";
 import Admin from "./screens/Admin.jsx";
 import ForgetPassword from "./screens/ForgetPassword.jsx";
 import ResetPassword from "./screens/ResetPassword.jsx";
-import PrivateRoute from "./Routes/PrivateRoute";
-import AdminRoute from "./Routes/AdminRoute";
 import "react-toastify/dist/ReactToastify.css";
 import { isAuth } from "./helpers/auth";
 // global.Buffer = Buffer;
  const App = () => {
   return (
     <>
-    <h1>Hello</h1>
       <Router>
         <Routes>
-          <Route path="/" exact element={<Configurator />} />
+          <Route path="/" exact element={<LandingPage />} />
+          <Route path="/configurator" exact element={<Configurator />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
           <Route

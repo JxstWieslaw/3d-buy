@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import authSvg from '../assests/auth.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
-import { authenticate, isAuth } from '../helpers/auth';
-import { Link, Navigate } from 'react-router-dom';
+import {  isAuth } from '../helpers/auth';
+import {  Navigate } from 'react-router-dom';
 const dotenv = require("dotenv");
 dotenv.config({ path: "../../.env" }); 
 const Register = () => {
