@@ -1,0 +1,30 @@
+.product-canvas {
+  width: 50vw;
+  height: 80vh;
+  background:white;
+  box-shadow:  10px 15px 15px 6px #ccd8dd;
+  border-radius: 5px;
+  margin-bottom:20px
+}
+
+
+.App{
+  margin: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: white !important;
+  color: #faf9f9;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+

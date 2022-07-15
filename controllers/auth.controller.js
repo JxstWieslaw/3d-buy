@@ -1,5 +1,5 @@
 const User = require("../models/auth.model");
-const expressJwt = require("express-jwt");
+const expressJwt = require("express-jwt/lib");
 const _ = require("lodash");
 const jwt_decode = require("jwt-decode");
 
@@ -8,8 +8,9 @@ const jwt = require("jsonwebtoken");
 
 const { errorHandler } = require("../helpers/dbErrorHandling");
 const nodemailer = require("nodemailer");
+
 require("dotenv").config({
-  path: "./config/config.env",
+  path: "../config/config.env",
 });
 
 const { validateToken } = require("../helpers/verifyToken");

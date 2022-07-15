@@ -1,59 +1,73 @@
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { Buffer } from "buffer";
-
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-import Configurator from "./screens/Configurator.jsx";
-import LandingPage from "./screens/LandingPage.jsx";
+import React, { Component } from "react";
 import Login from "./screens/Login.jsx";
 import Register from "./screens/Register.jsx";
 import Activate from "./screens/Activate.jsx";
 import Private from "./screens/Private.jsx";
 import Admin from "./screens/Admin.jsx";
+import Configurator from "./components-configurator/home/Home";
+import LandingPage from "./components-landing";
 import ForgetPassword from "./screens/ForgetPassword.jsx";
 import ResetPassword from "./screens/ResetPassword.jsx";
+import PrivateRoute from "./Routes/PrivateRoute";
+import AdminRoute from "./Routes/AdminRoute";
 import "react-toastify/dist/ReactToastify.css";
-import { isAuth } from "./helpers/auth";
-// global.Buffer = Buffer;
- const App = () => {
-  return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" exact element={<LandingPage />} />
-          <Route path="/configurator" exact element={<Configurator />} />
-          <Route path="/login" exact element={<Login />} />
-          <Route path="/register" exact element={<Register />} />
+import ConfiguratorRoute from "./Routes/ConfiguratorRoute.jsx";
+
+global.Buffer = Buffer;
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      login: true,
+    };
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route
+            path="/features"
+            exact
+            render={(props) => <App {...props} />}
+          />
+          <Route path="/login" exact render={(props) => <Login {...props} />} />
+          <Route
+            path="/register"
+            exact
+            render={(props) => <Register {...props} />}
+          />
           <Route
             path="/users/password/forget"
             exact
-            element={<ForgetPassword />}
+            render={(props) => <ForgetPassword {...props} />}
           />
           <Route
             path="/users/password/reset/:token"
             exact
-            element={<ResetPassword />}
-          />
-          <Route path="/users/activate/:token" exact element={<Activate />} />
-          <Route
-            path="/private"
-            exact
-            element={isAuth() ? <Private /> : <Navigate to="/login" replace />}
+            render={(props) => <ResetPassword {...props} />}
           />
           <Route
-            path="/admin"
+            path="/users/activate/:token"
             exact
-            element={isAuth() && isAuth().role === 'admin' ? <Admin /> : <Navigate to="/login" replace />}
+            render={(props) => <Activate {...props} />}
           />
-        </Routes>
-      </Router>
-    </>
-  );
-};
+          
+          <Route
+            path="/"
+            exact
+            render={(props) => <LandingPage {...props} />}
+          />
+          <PrivateRoute path="/private" exact component={Private} />
+          <AdminRoute path="/admin" exact component={Admin} />
+          <ConfiguratorRoute path="/configurator" exact component={Configurator} />
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 export default App;
-

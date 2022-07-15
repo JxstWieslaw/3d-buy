@@ -1,0 +1,18 @@
+.activate-name{
+    color:rgba(26,32,44,1) !important;
+}
+
+.signup-text{
+    color:rgba(26,32,44,1) !important;
+}
+
+.text-indigo-500{
+    color:rgba(102,126,234,1) !important;
+}
+.fa, .fas{
+    font-weight: 900;
+}
+
+.fa, .far, .fas{
+    font-family: "Font Awesome 5 Free";
+}

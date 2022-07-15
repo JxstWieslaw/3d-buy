@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import "./login.css";
 import authSvg from "../assests/login.svg";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { authenticate, isAuth } from "../helpers/auth";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-const dotenv = require("dotenv")
-dotenv.config()
+const dotenv = require("dotenv");
+dotenv.config({ path: "../../.env" });
+
 const Login = ({ history }) => {
   const [formData, setFormData] = useState({
     email: "",
@@ -21,7 +23,6 @@ const Login = ({ history }) => {
 
   const sendGoogleToken = (tokenId) => {
     console.log(tokenId);
-    console.log(process.env.REACT_APP_API_URL)
     axios
       .post(`${process.env.REACT_APP_API_URL}/googlelogin`, {
         idToken: tokenId,
@@ -29,17 +30,24 @@ const Login = ({ history }) => {
       .then((res) => {
         console.log(res.data);
         informParent(res);
-        console.log("here")
       })
       .catch((error) => {
         console.log("GOOGLE SIGNIN ERROR", error.response);
       });
   };
+  // const informParent = (response) => {
+  //   authenticate(response, () => {
+  //     console.log("here")
+  //     isAuth() && isAuth().role === "admin"
+  //       ? history.push("/admin")
+  //       : history.push("/private");
+  //   });
+  // };
   const informParent = (response) => {
     authenticate(response, () => {
-      isAuth() && isAuth().role === "admin"
-        ? history.push("/admin")
-        : history.push("/private");
+      console.log("here");
+      isAuth() && history.push("/configurator");
+      toast.success(`Hey ${response.data.user.name}, Welcome back!`);
     });
   };
 
@@ -54,7 +62,7 @@ const Login = ({ history }) => {
         informParent(res);
       })
       .catch((error) => {
-        console.log("GOOGLE SIGNIN ERROR", error.response);
+        console.log("FACEBOOK SIGNIN ERROR", error.response);
       });
   };
   const responseGoogle = (response) => {
@@ -107,13 +115,13 @@ const Login = ({ history }) => {
   };
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-      {isAuth() ? <Navigate to="/" replace /> : null}
+      {/* {isAuth() ? <Redirect to="/configurator" /> : null} */}
       <ToastContainer />
       <div className="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div className="mt-12 flex flex-col items-center">
-            <h1 className="text-2xl xl:text-3xl font-extrabold">
-              Sign Into CodeVilla 
+            <h1 className="text-2xl xl:text-3xl font-extrabold log-in-text">
+              Sign Into 3DBuy
             </h1>
             <div className="w-full flex-1 mt-8 text-indigo-500">
               <div className="flex flex-col items-center">
@@ -135,7 +143,9 @@ const Login = ({ history }) => {
                       <div className=" p-1 rounded-full ">
                         <i className="fab fa-facebook" />
                       </div>
-                      <span className="ml-4">Sign In with Facebook</span>
+                      <span className="ml-4 log-in-text">
+                        Sign In with Facebook
+                      </span>
                     </button>
                   )}
                 />
@@ -146,11 +156,11 @@ const Login = ({ history }) => {
                   target="_self"
                 >
                   <i className="fas fa-user-plus fa 1x w-6  -ml-2 text-indigo-500" />
-                  <span className="ml-4">Sign Up</span>
+                  <span className="ml-4 log-in-text">Sign Up</span>
                 </a>
               </div>
               <div className="my-12 border-b text-center">
-                <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+                <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 log-in-text">
                   Or sign In with e-mail
                 </div>
               </div>
@@ -180,8 +190,14 @@ const Login = ({ history }) => {
                   <span className="ml-3">Sign In</span>
                 </button>
                 <Link
+                  to="/"
+                  className="no-underline hover:underline text-indigo-500 text-md text-left absolute left-0  mt-2 "
+                >
+                  Go Home?
+                </Link>
+                <Link
                   to="/users/password/forget"
-                  className="no-underline hover:underline text-indigo-500 text-md text-right absolute right-0  mt-2"
+                  className="no-underline hover:underline text-indigo-500 text-md text-right absolute right-0  mt-2 "
                 >
                   Forget password?
                 </Link>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import './register.css'
 import authSvg from '../assests/auth.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
-import {  isAuth } from '../helpers/auth';
-import {  Navigate } from 'react-router-dom';
+import { authenticate, isAuth } from '../helpers/auth';
+import { Link, Redirect } from 'react-router-dom';
 const dotenv = require("dotenv");
 dotenv.config({ path: "../../.env" }); 
 const Register = () => {
@@ -64,13 +65,13 @@ const Register = () => {
 
   return (
     <div className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
-      {isAuth() ? <Navigate to='/' replace/> : null}
+      {isAuth() ? <Redirect to='/' /> : null}
       <ToastContainer />
       <div className='max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1'>
         <div className='lg:w-1/2 xl:w-5/12 p-6 sm:p-12'>
           <div className='mt-12 flex flex-col items-center'>
-            <h1 className='text-2xl xl:text-3xl font-extrabold'>
-              Sign Up for CodeVilla
+            <h1 className='text-2xl xl:text-3xl font-extrabold register-text'>
+              Sign Up for 3DBuy
             </h1>
 
             <form
@@ -127,7 +128,7 @@ const Register = () => {
                   target='_self'
                 >
                   <i className='fas fa-sign-in-alt fa 1x w-6  -ml-2 text-indigo-500' />
-                  <span className='ml-4'>Sign In</span>
+                  <span className='ml-4 register-text'>Sign In</span>
                 </a>
               </div>
             </form>

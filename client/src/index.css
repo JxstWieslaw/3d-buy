@@ -1,0 +1,418 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #444444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+} */
+
+* {
+  touch-action: manipulation;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.frame {
+  top: 0;
+  position: absolute;
+  left: 0;
+  padding: 1rem;
+}
+
+.frame__title {
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.frame__links {
+  display: inline-block;
+  margin: 0 2rem;
+  text-transform: lowercase;
+}
+
+.frame__links a {
+  display: inline-block;
+  margin: 0 0.25rem;
+  text-decoration: none;
+  color: red;
+}
+
+.frame__links a:focus,
+.frame__links a:hover {
+  text-decoration: underline;
+}
+
+/* This is the beginning of CSS for the objects to select from */
+
+.objects{
+  width: 100%;
+  height: 50px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.objects__slide{
+  position: absolute;
+  display: flex;
+  left: 0;
+  transform: translateX(-50%);
+  animation: wheelin 1s 2s ease-in-out forwards;
+}
+
+.leg__objects__swatch{
+  transition: 0.1s ease-in;
+  height: 50px;
+  min-width: 50px;
+  flex: 1;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-position: center;
+}
+
+.cushion__objects__swatch{
+  transition: 0.1s ease-in;
+  height: 50px;
+  min-width: 50px;
+  flex: 1;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-position: center;
+}
+
+.cushion__objects__swatch:nth-child(5n + 5) {
+  margin-right: 20px;
+}
+
+.leg__objects__swatch:nth-child(5n + 5) {
+  margin-right: 20px;
+}
+
+
+.attachment {
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+.attachment:hover .attachment__button-content {
+  margin: 5%;
+  height: 90%;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.3);
+} 
+
+.attachment-choices {
+  display: flex;
+  position: absolute;
+  height: min-content;
+  width: auto;
+  height: 3rem;
+  cursor: pointer; 
+}
+
+.attachment-choices-legs {
+  left: calc(58% + 3.1rem);
+  top: 85%;
+}
+
+.choice {
+  position: relative;
+  margin-left: 1px;
+  height: 80%;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.15s ease, margin 0.15s ease, height 0.15s ease, width 0.15s ease;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #4e4e4e;
+}
+.choice:hover {
+  opacity: 1;
+}
+
+.pegleg-svg,
+.leg-svg,
+.sword-svg,
+.axe-svg {
+  width: 30px;
+  height: 30px;
+  margin-left: 0.55rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* This is the end of CSS for the objects to select from */
+#c {
+  width: 100%;
+  height: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+}
+
+.change-objects {
+  position: absolute;
+  top: 0.5em;
+  width: 100%;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.options {
+  position: absolute;
+  left: 0;
+}
+
+.download-btn {
+  position: absolute;
+  right: 0.5em;
+  top:0.5em;
+}
+
+.signout-btn{
+  position: absolute !important;
+  right: 0.5em !important;
+  top:4em !important;
+}
+
+.update-profile{
+  position: absolute !important;
+  right: 0.5em !important;
+  top:7.2em !important;
+}
+.option {
+  background-size: cover;
+  background-position: 50%;
+  background-color: white;
+  margin-bottom: 3px;
+  padding: 10px;
+  height: 55px;
+  width: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option:hover {
+  border-left: 5px solid white;
+  width: 58px;
+}
+
+.option.--is-active {
+  border-right: 3px solid red;
+  width: 58px;
+  cursor: default;
+}
+
+.option.--is-active:hover {
+  border-left: none;
+}
+
+.option img {
+  height: 100%;
+  width: auto;
+  pointer-events: none;
+}
+
+.info {
+  padding: 0 1em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.info p {
+  margin-top: 0;
+}
+
+.tray {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.tray__slide {
+  position: absolute;
+  display: flex;
+  left: 0;
+  transform: translateX(-50%);
+  animation: wheelin 1s 2s ease-in-out forwards;
+}
+
+.tray__swatch {
+  transition: 0.1s ease-in;
+  height: 50px;
+  min-width: 50px;
+  flex: 1;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-position: center;
+}
+
+
+.tray__swatch:nth-child(5n + 5) {
+  margin-right: 20px;
+}
+
+.drag-notice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  width: 10em;
+  height: 10em;
+  box-sizing: border-box;
+  font-size: 0.9em;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 5em;
+  background: white;
+  position: absolute;
+}
+
+.drag-notice.start {
+  -webkit-animation: popout 0.25s 3s forwards;
+  animation: popout 0.25s 3s forwards;
+}
+
+@-webkit-keyframes popout {
+  to {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@keyframes popout {
+  to {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@-webkit-keyframes wheelin {
+  to {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes wheelin {
+  to {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 960px) {
+  .options {
+    top: 20em;
+  }
+
+  .info {
+    padding: 0 1em 1em 0;
+  }
+
+  .info__message {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .info__message p {
+    margin: 0;
+    font-size: 0.7em;
+  }
+
+  .frame {
+    left: auto;
+    right: 0;
+    padding-left: 6rem;
+  }
+
+  .frame__links {
+    display: block;
+    margin: 0;
+    text-align: right;
+  }
+}
+
+@media (max-width: 720px) {
+  .info {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1em 1em;
+  }
+
+  .info__message {
+    margin-bottom: 1em;
+  }
+}
+
+@media (max-width: 680px) {
+  .info {
+    padding: 1em 2em;
+  }
+
+  .info__message {
+    display: none;
+  }
+
+  .options {
+    bottom: 50px;
+  }
+
+  .option {
+    margin-bottom: 1px;
+    padding: 5px;
+    height: 45px;
+    width: 45px;
+    display: flex;
+  }
+
+  .option.--is-active {
+    border-right: 2px solid red;
+    width: 47px;
+  }
+
+  .option img {
+    height: 100%;
+    width: auto;
+    pointer-events: none;
+  }
+}

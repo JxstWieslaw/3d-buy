@@ -3,7 +3,7 @@ import authSvg from '../assests/update.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { updateUser, isAuth, getCookie, signout } from '../helpers/auth';
-
+import { Link, Redirect } from 'react-router-dom';
 
 const Admin = ({ history }) => {
   const [formData, setFormData] = useState({
@@ -127,7 +127,7 @@ const Admin = ({ history }) => {
               </div>
               <div className='my-12 border-b text-center'>
                 <div className='leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2'>
-                  Go To Home
+                  Go To Configurator
                 </div>
               </div>
               <div className='flex flex-col items-center'>
@@ -138,7 +138,7 @@ const Admin = ({ history }) => {
                   target='_self'
                 >
                   <i className='fas fa-sign-in-alt fa 1x w-6  -ml-2 text-indigo-500' />
-                  <span className='ml-4'>Home</span>
+                  <span className='ml-4'>Configurator</span>
                 </a>
               </div>
             </form>

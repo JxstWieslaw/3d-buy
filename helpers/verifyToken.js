@@ -1,5 +1,5 @@
 require("dotenv").config({
-  path: "./config/config.env",
+  path: "../config/config.env",
 });
 const fetch = require("node-fetch");
 const jwt_decode = require("jwt-decode");

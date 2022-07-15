@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 const authRouter = require('./routes/auth.route')
 const userRouter = require('./routes/user.route')
 
-// Dev Logginf Middleware
+// Dev Logginfg Middleware
 if (process.env.NODE_ENV === 'development') {
     app.use(cors({
         origin: process.env.CLIENT_URL
